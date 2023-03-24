@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2023 at 09:38 AM
+-- Generation Time: Mar 24, 2023 at 04:08 PM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -70,17 +70,27 @@ INSERT INTO `item_category` (`category_id`, `category_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `qr`
+--
+
+CREATE TABLE `qr` (
+  `Qr_id` int(11) NOT NULL,
+  `qr_img` text NOT NULL,
+  `item_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
-  `e-mail` varchar(40) NOT NULL,
+  `email` varchar(40) NOT NULL,
   `password` varchar(20) NOT NULL,
   `user_id` int(11) NOT NULL,
   `first_name` varchar(20) NOT NULL,
   `last_name` varchar(20) NOT NULL,
-  `intentional_use` tinyint(1) NOT NULL,
-  `company_name` varchar(20) NOT NULL,
   `phone_number` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -88,9 +98,9 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`e-mail`, `password`, `user_id`, `first_name`, `last_name`, `intentional_use`, `company_name`, `phone_number`) VALUES
-('admin@gmail.com', 'admin', 1, 'admin', 'admin', 0, 'N/A', 501111111),
-('user@gmail.com', 'user', 2, 'user', 'user', 1, 'Coca-cola', 541111111);
+INSERT INTO `user` (`email`, `password`, `user_id`, `first_name`, `last_name`, `phone_number`) VALUES
+('admin@gmail.com', 'admin', 1, 'admin', 'admin', 501111111),
+('user@gmail.com', 'user', 2, 'user', 'user', 541111111);
 
 --
 -- Indexes for dumped tables
@@ -112,11 +122,18 @@ ALTER TABLE `item_category`
   ADD KEY `category_name` (`category_name`);
 
 --
+-- Indexes for table `qr`
+--
+ALTER TABLE `qr`
+  ADD PRIMARY KEY (`Qr_id`),
+  ADD KEY `item_id` (`item_id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`),
-  ADD UNIQUE KEY `e-mail` (`e-mail`),
+  ADD UNIQUE KEY `e-mail` (`email`),
   ADD UNIQUE KEY `phone_number` (`phone_number`);
 
 --
@@ -134,6 +151,12 @@ ALTER TABLE `item`
 --
 ALTER TABLE `item_category`
   MODIFY `category_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `qr`
+--
+ALTER TABLE `qr`
+  MODIFY `Qr_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
