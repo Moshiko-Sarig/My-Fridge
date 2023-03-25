@@ -1,0 +1,25 @@
+.Header {
+    text-align: center;
+    background-color: tomato;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 60% 40%;
+    grid-template-columns: repeat(12, 1fr) ;
+}
+
+.siteTitle {
+    grid-column: span 12;
+}
+
+.menuToggle {
+    grid-column: span 1;
+}
+
+.userSearch {
+    grid-column: span 2;
+}
+
+.menuOptions {
+    grid-column: span 9;
+    text-align: left;
+}
