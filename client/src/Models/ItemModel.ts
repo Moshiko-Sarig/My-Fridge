@@ -1,4 +1,4 @@
-export class ItemModel {
+export default class ItemModel {
     constructor(
         public item_id: string,
         public category_name: string,
