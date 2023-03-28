@@ -20,6 +20,21 @@ export default function Login(): JSX.Element {
     function logUserIn(): void {
         console.log(formData);
         event.preventDefault();
+
+
+        // setUserInfo(info: DecodedToken) {
+        //     this.userInfo = info;
+        //     this._isLoggedIn = !!info;
+        //   }
+        
+        //   decodeToken() {
+        //     const token = this.tokenService.getToken();
+        //     if (token) {
+        //       this.userInfo = jwt_decode(token) as DecodedToken;
+        //       this.user = this.userInfo.user;
+        //       this._isLoggedIn = true;
+        //     }
+        //   }
     }
 
     return (

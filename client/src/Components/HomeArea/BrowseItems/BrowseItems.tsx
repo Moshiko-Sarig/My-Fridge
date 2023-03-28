@@ -1,4 +1,5 @@
 import './BrowseItems.css'
+import ItemModel from '../../../Models/ItemModel'
 
 
 export default function BrowseItems(): JSX.Element {

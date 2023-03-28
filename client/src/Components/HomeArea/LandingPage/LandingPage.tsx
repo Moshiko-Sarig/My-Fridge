@@ -1,14 +1,33 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux/es/exports';
+import UserModel from '../../../Models/UserModel';
+import { getToken } from '../../Redux/Actions';
 import './LandingPage.css'
 
 
+
+export interface ReduxState {
+    logged: { isLogged: boolean, userInfo: UserModel },
+    tokenCommands: { token: string }
+}
+
 export default function LandingPage(): JSX.Element {
+    const tokenCommands = useSelector((state: ReduxState) => state.tokenCommands);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getToken());
+    }, []);
+    
+
     return (
         <div className='LandingPage'>
             <aside>
             </aside>
             <main>
                 <p>
-                    <h2>Welcome</h2>
+                    Welcome
                 </p>
                 <p>
                     This site was created by Moshiko Sarig and Yotam Amshalom, as a portfolio project. <br />
@@ -20,13 +39,13 @@ export default function LandingPage(): JSX.Element {
                     However, <br /> if you wish to have an inventory, you will need to create an account and sign in to have access to
                     your items, and <br /> be able to manage them accordingly.
                 </p>
-                <p>
+                <div>
                     If you wish to, you can contact us through our gitHub accounts: <br />
                     <ul>
                         <li>Moshiko - Moshiko-Sarig</li>
                         <li>Yotam - Trafalguy</li>
                     </ul>
-                </p>
+                </div>
             </main>
         </div>
     )

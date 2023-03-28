@@ -11,16 +11,16 @@ export default function ControlPanel(): JSX.Element {
                 <NavLink to='/landing-page'>Home</NavLink>
             </button> &nbsp;
             <button>
-                <NavLink to='/login'>Login</NavLink>
-            </button> &nbsp;
-            <button>
-                <NavLink to='/create-account'>Create account</NavLink>
-            </button> &nbsp;
-            <button>
                 <NavLink to='/browse-items'>Browse items</NavLink>
             </button> &nbsp;
             <button>
                 <NavLink to='/create-qr'>Create QR</NavLink>
+            </button> &nbsp;
+            <button>
+                <NavLink to='/login'>Login</NavLink>
+            </button> &nbsp;
+            <button>
+                <NavLink to='/create-account'>Create account</NavLink>
             </button> &nbsp;
         </div>
     )
