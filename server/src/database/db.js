@@ -1,16 +1,16 @@
 const db = require("mysql");
 
 const pool = db.createPool({
-  host: process.env.DATABASE_HOST,
-  user: process.env.DATABSE_USER,
-  database: process.env.DATABASE_NAME
+  host: "localhost",
+  user: "root",
+  database: "my_fridge"
 });
 
 console.log("Connected to database");
 
-function executeQueryAsync(sqlCmd) {
+function executeQueryAsync(sqlCmd, values) { // Add 'values' parameter
   return new Promise((resolve, reject) => {
-    pool.query(sqlCmd, (err, rows) => {
+    pool.query(sqlCmd, values, (err, rows) => { // Pass 'values' to pool.query()
       if (err) {
         reject(err);
       } else {

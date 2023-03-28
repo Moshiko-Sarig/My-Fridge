@@ -1,3 +1,6 @@
-export default class Api_endpoints {
+class Api_endpoints {
 
 }
+
+
+export default Api_endpoints;
