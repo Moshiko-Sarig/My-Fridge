@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2023 at 11:29 PM
+-- Generation Time: Mar 29, 2023 at 07:17 PM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.0.25
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,6 +35,7 @@ CREATE TABLE `item` (
   `item_name` varchar(20) NOT NULL,
   `quantity` int(4) NOT NULL,
   `expiration_date` date NOT NULL,
+  `qr_image` text NOT NULL,
   `user_id` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -42,9 +43,9 @@ CREATE TABLE `item` (
 -- Dumping data for table `item`
 --
 
-INSERT INTO `item` (`item_id`, `category_name`, `item_name`, `quantity`, `expiration_date`, `user_id`) VALUES
-(1, 'Dairy', 'Milk', 14, '2026-03-11', 1),
-(2, 'Sweets', 'Chocolate', 1, '2023-04-12', 2);
+INSERT INTO `item` (`item_id`, `category_name`, `item_name`, `quantity`, `expiration_date`, `qr_image`, `user_id`) VALUES
+(1, 'Dairy', 'Milk', 14, '2026-03-11', '', 1),
+(2, 'Sweets', 'Chocolate', 1, '2023-04-12', '', 2);
 
 -- --------------------------------------------------------
 
@@ -70,24 +71,12 @@ INSERT INTO `item_category` (`category_id`, `category_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `qr`
---
-
-CREATE TABLE `qr` (
-  `Qr_id` int(11) NOT NULL,
-  `qr_img` text NOT NULL,
-  `item_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
   `email` varchar(40) NOT NULL,
-  `password` text NOT NULL,
+  `password` varchar(20) NOT NULL,
   `user_id` int(11) NOT NULL,
   `first_name` varchar(20) NOT NULL,
   `last_name` varchar(20) NOT NULL,
@@ -100,9 +89,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`email`, `password`, `user_id`, `first_name`, `last_name`, `phone_number`) VALUES
 ('admin@gmail.com', 'admin', 1, 'admin', 'admin', 501111111),
-('user@gmail.com', 'user', 2, 'user', 'user', 541111111),
-('test@example.com', '$2a$10$WjfGp51isKAJh', 7, 'John', 'Doe', 123),
-('moshikosarig1@gmail.com', '$2a$12$RcC.kxdJ4F8craIDVKh9s.GDmmk4vNX1p3xXjv0Y8jf7I9294nm8K', 9, 'test', 'test', 1234);
+('user@gmail.com', 'user', 2, 'user', 'user', 541111111);
 
 --
 -- Indexes for dumped tables
@@ -122,13 +109,6 @@ ALTER TABLE `item`
 ALTER TABLE `item_category`
   ADD PRIMARY KEY (`category_id`),
   ADD KEY `category_name` (`category_name`);
-
---
--- Indexes for table `qr`
---
-ALTER TABLE `qr`
-  ADD PRIMARY KEY (`Qr_id`),
-  ADD KEY `item_id` (`item_id`);
 
 --
 -- Indexes for table `user`
@@ -155,16 +135,10 @@ ALTER TABLE `item_category`
   MODIFY `category_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `qr`
---
-ALTER TABLE `qr`
-  MODIFY `Qr_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
