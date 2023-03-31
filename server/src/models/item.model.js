@@ -1,8 +1,9 @@
 const { executeQueryAsync } = require('../database/db');
-const queries = require('../services/Queries');
+const queries = require('../queries/item.queries');
 
 
 class ItemModel {
+
     static async getItemsByUserId(user_id) {
         try {
             const result = await executeQueryAsync(queries.GET_ITEMS_BY_USER_ID, [user_id]);

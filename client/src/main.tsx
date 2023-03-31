@@ -1,10 +1,20 @@
+import { configureStore } from '@reduxjs/toolkit';
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { Provider } from 'react-redux';
 import App from './App'
+import allReducers from './Components/Redux/Reducers';
 import './index.css'
 
+
+let store = configureStore({
+  reducer: allReducers
+});
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+  <Provider store={store}>
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
+  </React.StrictMode>
+  </Provider>,
 )

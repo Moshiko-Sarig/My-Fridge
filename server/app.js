@@ -1,21 +1,25 @@
 const express = require("express");
 const cors = require("cors");
-const server = express();
 const dotenv = require('dotenv');
-const userRoutes = require('./src/routes/User');
+
+const userRoutes = require('./src/routes/user.routes');
+const itemRoutes = require('./src/routes/item.routes');
+const itemCategoryRoutes = require('./src/routes/itemCategory.routes')
+
 dotenv.config();
 
-server.use(cors());
-server.use(express.json());
+const app = express();
 
-server.use('/api/v1', userRoutes);
+app.use(cors());
+app.use(express.json());
 
-server.use("*", (req, res) => {
+app.use('/api/v1', [userRoutes, itemRoutes, itemCategoryRoutes]);
+
+app.use("*", (req, res) => {
     res.status(404).send(`Route not found ${req.originalUrl}`);
 });
 
-
-server.listen(process.env.APP_PORT, () => {
+const server = app.listen(process.env.APP_PORT, () => {
     console.log("Server is listening on port:", process.env.APP_PORT);
 }).on("error", (err) => {
     console.log(err);
@@ -25,3 +29,6 @@ server.listen(process.env.APP_PORT, () => {
         console.log("Error: Unknown error");
     }
 });
+
+
+module.exports = server; 

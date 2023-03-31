@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const ItemCategoryController = require ('../controllers/ItemCategoryController');
+const ItemCategoryController = require ('../controllers/itemCategory.controller');
+const middleware = require("../middlewares/auth")
 
+//TODO:add middleware to the routes 
 
 router.get('/categories', ItemCategoryController.getCategories);
 router.post('/categories/add/new/category', ItemCategoryController.addCategory);

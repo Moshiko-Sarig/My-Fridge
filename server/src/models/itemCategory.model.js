@@ -1,5 +1,5 @@
 const { executeQueryAsync } = require('../database/db');
-const queries = require('../services/Queries');
+const queries = require('../queries/itemCategory.queries');
 
 
 class ItemCategoryModel {

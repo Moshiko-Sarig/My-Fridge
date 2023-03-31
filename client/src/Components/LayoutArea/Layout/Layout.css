@@ -16,9 +16,9 @@
     margin-top: 0;
     position: sticky;
     top: 0;
-    background-color: gray;
+    /* background-color: gray; */
 }
 .Layout > main {
     padding-top: 40px;
-    background-color: yellow;
+    /* background-color: yellow; */
 }

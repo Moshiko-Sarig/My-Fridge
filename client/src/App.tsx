@@ -1,15 +1,16 @@
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import QRCode from 'react-qr-code'
 import { BrowserRouter } from 'react-router-dom'
 import Layout from './Components/LayoutArea/Layout/Layout'
+import Test from './Components/test'
+import PageNotFound from './Components/HomeArea/PageNotFound/PageNotFound'
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Layout />
+        {/* <Layout /> */}
+        {/* <Test/> */}
+        <PageNotFound/>
       </BrowserRouter>
     </div>
   )

@@ -6,4 +6,5 @@ html, body {
     overflow-y: hidden;
     margin: 0%;
     padding: 1px;
+    background-image: url(assets/sun-tornado.png);
 }
