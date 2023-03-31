@@ -9,9 +9,13 @@ import UserModel from '../../../Models/UserModel';
 import api_endpoints from '../../../Utils/api.endpoints';
 import './Login.css'
 
+interface DecodedToken {
+    exp: number;
+    iat: number;
+    user: UserModel;
+}
 
 const Login = () => {
-
     const dispatch = useDispatch();
     const [authToken, setAuthToken,] = useCookie('authToken');
     const [formData, setFormData] = useState({
@@ -33,14 +37,16 @@ const Login = () => {
         const response = await axios.post(api_endpoints.LOGIN, formData);
         const token = response.data.token;
         setAuthToken(token, 30);
-        const decodedUserData = jwt_decode(token) as UserModel; 
-        dispatch(userLogin(decodedUserData));
+        const decodedTokenData = jwt_decode(token) as DecodedToken;
+        const userData = decodedTokenData.user;
+        dispatch(userLogin(userData));
 
         setTimeout(() => {
             dispatch(userSignOut());
         }, 30 * 60 * 1000);
-
     }
+
+
 
     return (
         <div className='Login'>

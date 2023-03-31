@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2023 at 02:37 PM
+-- Generation Time: Apr 01, 2023 at 12:58 AM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.0.25
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -44,7 +44,9 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`item_id`, `category_name`, `item_name`, `quantity`, `expiration_date`, `qr_image`, `user_id`) VALUES
-(3, 'Meat', 'test', 1, '2023-03-15', 'test.png', 7);
+(81, 'Meat', 'steak', 20, '3333-10-10', '', 6),
+(82, 'Meat', 'steak', 20, '3333-10-10', 'http://localhost:4000/api/v1/items/get/item/by/item/id/82', 6),
+(83, 'Meat', 'pork', 20, '3333-10-10', 'http://localhost:4000/api/v1/items/get/item/by/item/id/83', 6);
 
 -- --------------------------------------------------------
 
@@ -126,7 +128,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `item_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `item_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `item_category`

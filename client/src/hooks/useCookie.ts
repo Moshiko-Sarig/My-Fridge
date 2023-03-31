@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 
-export function useCookie(cookieName: string): [string | null, (value: string, minutes: number) => void] {
- 
+export function useCookie(cookieName: string): [string | null, (value: string, minutes: number) => void, () => void] {
+
   const [cookieValue, setCookieValue] = useState(() => getCookie(cookieName));
 
-  function setCookie(name:string, value:string, minutes:number) {
-    
+  function setCookie(name: string, value: string, minutes: number) {
+
     let expires = '';
     if (minutes) {
       const date = new Date();
@@ -15,16 +15,24 @@ export function useCookie(cookieName: string): [string | null, (value: string, m
     document.cookie = name + '=' + (value || '') + expires + '; path=/';
   }
 
-  function getCookie(name:string) {
+  function getCookie(name: string) {
     const value = '; ' + document.cookie;
     const parts = value.split('; ' + name + '=');
     if (parts.length === 2) return parts.pop().split(';').shift();
     return null;
   }
 
-  function setCookieValueAndSave(value:string, minutes:number) {
+  function setCookieValueAndSave(value: string, minutes: number) {
     setCookie(cookieName, value, minutes);
     setCookieValue(value);
+  }
+  function deleteCookie(name: string) {
+    setCookie(name, '', -1);
+  }
+
+  function removeCookie() {
+    deleteCookie(cookieName);
+    setCookieValue(null);
   }
 
   useEffect(() => {
@@ -34,5 +42,5 @@ export function useCookie(cookieName: string): [string | null, (value: string, m
     }
   }, [cookieValue, cookieName]);
 
-  return [cookieValue, setCookieValueAndSave];
+  return [cookieValue, setCookieValueAndSave,removeCookie];
 }

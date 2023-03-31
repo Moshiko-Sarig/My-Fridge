@@ -99,8 +99,5 @@ export default function PageNotFound(): JSX.Element {
                 </div>
             </div>
         </>
-
-
-
     )
 }

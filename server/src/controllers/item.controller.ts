@@ -2,9 +2,40 @@ import { Request, Response } from 'express';
 import ItemModel from '../models/item.model';
 
 class ItemController {
+    static async getItems(req: Request, res: Response) {
+        try {
+            const allItems = await ItemModel.getAllItems();
+            res.json(allItems).status(200);
+        }
+        catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'SERVER ERROR!' });
+        }
+    }
+    static async getItemById(req: Request, res: Response) {
+        try {
+            const itemId = req.params.id;
+            const singleItem = await ItemModel.getItemsByUserId(itemId);
+            res.json(singleItem).status(200);
+        }
+        catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'SERVER ERROR!' });
+        }
+    }
+    static async getLatestItem(req: Request, res: Response) {
+        try {
+            const singleItem = await ItemModel.getLatestItem();
+            res.json(singleItem).status(200);
+        }
+        catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'SERVER ERROR!' });
+        }
+    }
     static async getItemsByUserId(req: Request, res: Response) {
         try {
-            const userId = Number(req.params.id);
+            const userId = req.params.id;
             const userItems = await ItemModel.getItemsByUserId(userId);
             res.json(userItems).status(200);
         }
@@ -49,4 +80,4 @@ class ItemController {
         }
     }
 }
-export=ItemController;
+export = ItemController;
