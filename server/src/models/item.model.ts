@@ -1,10 +1,7 @@
-const { executeQueryAsync } = require('../database/db');
-const queries = require('../queries/item.queries');
-
-
+import { executeQueryAsync } from '../database/db';
+import queries from "../queries/item.queries";
 class ItemModel {
-
-    static async getItemsByUserId(user_id) {
+    static async getItemsByUserId(user_id: number) {
         try {
             const result = await executeQueryAsync(queries.GET_ITEMS_BY_USER_ID, [user_id]);
             return result;
@@ -14,9 +11,9 @@ class ItemModel {
         }
     }
 
-    static async addItem(item) {
+    static async addItem(item: { category_name: string; item_name: string; quantity: number; expiration_date: string; user_id: number }) {
         try {
-            const result = await executeQueryAsync(queries.GET_ITEMS_BY_USER_ID, [
+            const result = await executeQueryAsync(queries.ADD_ITEM, [
                 item.category_name,
                 item.item_name,
                 item.quantity,
@@ -30,7 +27,7 @@ class ItemModel {
         }
     }
 
-    static async editItem(itemToEdit) {
+    static async editItem(itemToEdit: { category_name: string; item_name: string; quantity: number; expiration_date: string; item_id: number; user_id: number }) {
         try {
             const result = await executeQueryAsync(queries.EDIT_ITEM, [
                 itemToEdit.category_name,
@@ -47,7 +44,7 @@ class ItemModel {
         }
     }
 
-    static async deleteItem(item_id) {
+    static async deleteItem(item_id: number) {
         try {
             const result = await executeQueryAsync(queries.DELETE_ITEM, [item_id]);
             return result;
@@ -58,5 +55,4 @@ class ItemModel {
     }
 }
 
-
-module.exports = ItemModel;
+export = ItemModel;

@@ -1,12 +1,23 @@
-const { executeQueryAsync } = require('../database/db');
-const userQueries = require('../queries/user.queries');
-const queries = require('../queries/user.queries');
-const bcrypt = require('bcryptjs');
+import { executeQueryAsync } from "../database/db";
+import userQueries from "../queries/user.queries";
+import queries from "../queries/user.queries";
+import bcrypt from "bcryptjs";
+
+interface User {
+  email: string;
+  password: string;
+  first_name: string;
+  last_name: string;
+  phone_number: string;
+}
+
+interface Credentials {
+  email: string;
+  password: string;
+}
 
 class UserModel {
-
-
-  static async addUser(user) {
+  static async addUser(user: User) {
     try {
       const result = await executeQueryAsync(userQueries.ADD_NEW_USER, [
         user.email,
@@ -22,8 +33,7 @@ class UserModel {
     }
   }
 
-
-  static async checkIfEmailExists(email) {
+  static async checkIfEmailExists(email: string) {
     try {
       const result = await executeQueryAsync(queries.CHECK_IF_EMAIL_EXIST, [email]);
       return result;
@@ -32,22 +42,21 @@ class UserModel {
       throw error;
     }
   }
-  static async login(credentials) {
+
+  static async login(credentials: Credentials) {
     try {
       const user = await executeQueryAsync(userQueries.LOGIN, [credentials.email]);
 
-      if (!user || user.length < 1) return null
+      if (!user || user.length < 1) return null;
       const hashedPassword = user[0].password;
       const isPasswordMatch = await bcrypt.compare(credentials.password, hashedPassword);
       if (!isPasswordMatch) return null;
       delete user[0].password;
       return user[0];
-
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error);
     }
   }
 }
 
-module.exports = UserModel;
+export default UserModel;
