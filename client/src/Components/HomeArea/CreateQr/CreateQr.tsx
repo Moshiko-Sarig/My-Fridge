@@ -18,7 +18,7 @@ export default function CreateQr(): JSX.Element {
         user_id: ""
     }
     const [formData, setFormData] = useState(initialFormData);
-    const { data: categories, loading, error, reFetch } = useFetch(`${api_endpoints.GET_CATEGORIES}`, null);
+    const { data: categories, loading, error, reFetch } = useFetch(`${api_endpoints.GET_CATEGORIES}`, null, null);
     const allCategories = categories as ItemCategoryModel[];
     const logged = useSelector((state: ReduxState) => state.logged);
 

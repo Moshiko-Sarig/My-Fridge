@@ -40,12 +40,13 @@ const Login = () => {
         const decodedTokenData = jwt_decode(token) as DecodedToken;
         const userData = decodedTokenData.user;
         dispatch(userLogin(userData));
-
         setTimeout(() => {
             dispatch(userSignOut());
         }, 30 * 60 * 1000);
+        if (userData) {
+            // code for redirect goes here      
+        }
     }
-
 
 
     return (
@@ -65,7 +66,6 @@ const Login = () => {
                 <div>
                     <span>Dont have an account yet ?</span> &nbsp;
                     <NavLink to="/create-account"><u className='semiLink'>Create an account</u></NavLink>
-
                 </div>
             </form>
         </div>

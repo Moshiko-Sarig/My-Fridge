@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-function useFetch(url: string, token: string | null | undefined) {
+function useFetch(url: string, urlVariable: string | null,  token: string | null | undefined) {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    if (urlVariable) {
+        url = url + urlVariable;
+    }
 
     useEffect(() => {
         const fetchData = async () => {

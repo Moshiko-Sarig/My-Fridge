@@ -1,24 +1,29 @@
-import './BrowseItems.css'
-import ItemModel from '../../../Models/ItemModel'
-import useFetch from '../../../hooks/useFetch'
-import api_endpoints from '../../../Utils/api.endpoints'
+import { useSelector } from 'react-redux';
+import ItemModel from '../../../Models/ItemModel';
+import api_endpoints from '../../../Utils/api.endpoints';
+import useFetch from '../../../hooks/useFetch';
+import { ReduxState } from '../../LayoutArea/Layout/Layout';
+import './MyItems.css'
 
 
-export default function BrowseItems(): JSX.Element {
-  const { data: items, loading, error, reFetch } = useFetch(`${api_endpoints.GET_ITEMS}`, null, null);
-  const allItems = items as ItemModel[];
+
+
+export default function MyItems(): JSX.Element {
+  const logged = useSelector((state: ReduxState) => state.logged);
+  const { data: items, loading, error, reFetch } = useFetch(`${api_endpoints.GET_USER_ITEMS}`, logged.userInfo.user_id, null);
+  const allUserItems = items as ItemModel[];
 
   function editItem() {
-    
+
   }
   function deleteItem() {
-    
+
   }
 
-
+  
   return (
-    <div className='BrowseItems'>
-      <h1>Browse items works !</h1>
+    <div className='MyItems'>
+      <h1>My items works</h1>
 
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
@@ -37,7 +42,7 @@ export default function BrowseItems(): JSX.Element {
             </tr>
           </thead>
           <tbody>
-            {Array.isArray(allItems) && allItems.map((item: ItemModel) => (
+            {Array.isArray(allUserItems) && allUserItems.map((item: ItemModel) => (
               <tr className="row100">
                 <td className="column100 column1" data-column="column1">{item.item_name}</td>
                 <td className="column100 column2" data-column="column2">{item.category_name}</td>

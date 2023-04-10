@@ -5,6 +5,7 @@ import CreateQr from "../HomeArea/CreateQr/CreateQr";
 import LandingPage from "../HomeArea/LandingPage/LandingPage";
 import Login from "../HomeArea/Login/Login";
 import PageNotFound from "../HomeArea/PageNotFound/PageNotFound";
+import MyItems from "../HomeArea/MyItems/MyItems";
 
 
 export default function Routing(): JSX.Element {
@@ -16,6 +17,7 @@ export default function Routing(): JSX.Element {
                 <Route path='/login' element={<Login />} />
                 <Route path='/create-account' element={<CreateAccount />} />
                 <Route path='/browse-items' element={<BrowseItems />} />
+                <Route path='/my-items' element={<MyItems />} />
                 <Route path='/create-qr' element={<CreateQr />} />
                 <Route path='*' element={<PageNotFound />} />
             </Routes>

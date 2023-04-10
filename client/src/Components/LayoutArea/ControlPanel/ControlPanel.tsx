@@ -17,13 +17,24 @@ export default function ControlPanel(): JSX.Element {
         <div className='ControlPanel'>
             <button>
                 <NavLink to='/landing-page'>Home</NavLink>
-            </button> &nbsp;
+            </button>
             <button>
                 <NavLink to='/browse-items'>Browse items</NavLink>
-            </button> &nbsp;
+            </button>
+            {logged.isLogged ?
             <button>
-                <NavLink to='/create-qr'>Create QR</NavLink>
-            </button> &nbsp;
+                <NavLink to='/my-items'>My items</NavLink>
+            </button>
+            :
+                null
+            }
+            {logged.isLogged ?
+                <button>
+                    <NavLink to='/create-qr'>Create QR</NavLink>
+                </button>
+                :
+                null
+            }
             {logged.isLogged ?
                 <button onClick={logUserOut}>
                     Logout
@@ -33,10 +44,13 @@ export default function ControlPanel(): JSX.Element {
                     <NavLink to='/login'>Login</NavLink>
                 </button>
             }
-            &nbsp;
-            <button>
-                <NavLink to='/create-account'>Create account</NavLink>
-            </button> &nbsp;
+            {!logged.isLogged ?
+                <button>
+                    <NavLink to='/create-account'>Create account</NavLink>
+                </button>
+                :
+                null
+            }
         </div>
     )
 }
