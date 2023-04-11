@@ -1,0 +1,22 @@
+.ModalGrid {
+    height: 95%;
+    text-align: center;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 50% 15% 15% 20%;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.ModalGridEdit {
+    height: 95%;
+    text-align: center;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 15% 15% 15% 15% 20%;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+
+.gridRow {
+    grid-column: span 5;
+}
