@@ -1,14 +1,18 @@
-import './BrowseItems.css'
-import ItemModel from '../../../Models/ItemModel'
-import useFetch from '../../../hooks/useFetch'
-import api_endpoints from '../../../Utils/api.endpoints'
+import { useSelector } from 'react-redux';
+import ItemModel from '../../../Models/ItemModel';
+import api_endpoints from '../../../Utils/api.endpoints';
+import useFetch from '../../../hooks/useFetch';
+import { ReduxState } from '../../LayoutArea/Layout/Layout';
+import Modal from '../Modal/Modal';
 import { useEffect, useState } from 'react';
-import Modal from '../Modal/Modal'; 
+import './MyItems.css'
 import axios from 'axios';
 
 
-export default function BrowseItems(): JSX.Element {
-  const { data: data, loading, error, reFetch } = useFetch(`${api_endpoints.GET_ITEMS}`, null, null);
+
+export default function MyItems(): JSX.Element {
+  const logged = useSelector((state: ReduxState) => state.logged);
+  const { data: data, loading, error, reFetch } = useFetch(`${api_endpoints.GET_USER_ITEMS}`, logged.userInfo.user_id, null);
   const allItems = data as ItemModel[];
   const [itemData, setItemData] = useState({ items: [] });
   const [showModal, setShowModal] = useState<{ isModalOpen: boolean, editView: boolean, selectedItem: ItemModel | null }>
@@ -21,9 +25,34 @@ export default function BrowseItems(): JSX.Element {
   }, [data]);
 
   function handleModalToggle(item: ItemModel): void {
-    setShowModal({ isModalOpen: !showModal.isModalOpen, editView: showModal.editView, selectedItem: item });
+    if (showModal.editView) {
+      editItem(item);
+    }
+    else {
+      setShowModal({ isModalOpen: !showModal.isModalOpen, editView: showModal.editView, selectedItem: item });
+    }
   }
-
+  function editItem(item: ItemModel) {
+    setShowModal({ isModalOpen: !showModal.isModalOpen, editView: !showModal.editView, selectedItem: item });
+  }
+  async function deleteItem(item: ItemModel) {
+    const index = itemData.items.findIndex(i => i.item_id === item.item_id);
+    const deleteUrl = api_endpoints.DELETE_ITEM + `${item.item_id}`;
+    if (index !== -1) {
+      try {
+        const response = await axios.delete(`${deleteUrl}`);
+      }
+      catch (error) {
+        console.log(error);
+      }
+      finally {
+        const itemDataBeforeIndex = itemData.items.slice(0, index);
+        const itemDataAfterIndex = itemData.items.slice(index + 1);
+        const updatedItemData = [...itemDataBeforeIndex, ...itemDataAfterIndex];
+        setItemData({ items: updatedItemData });
+      }
+    }
+  }
 
   return (
     <div className='BrowseItems'>
@@ -44,6 +73,8 @@ export default function BrowseItems(): JSX.Element {
                   <th>Quantity</th>
                   <th>Expiration date</th>
                   <th>QR image</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
                 </tr>
               </thead>
               <tbody>
@@ -60,6 +91,8 @@ export default function BrowseItems(): JSX.Element {
                     <td>
                       <button className='qrImage' onClick={() => handleModalToggle(item)}>Click mee</button>
                     </td>
+                    <td><button onClick={() => editItem(item)}>Edit</button></td>
+                    <td><button onClick={() => deleteItem(item)}>Delete</button></td>
                   </tr>
                 ))}
               </tbody>

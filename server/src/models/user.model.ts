@@ -17,6 +17,17 @@ interface Credentials {
 }
 
 class UserModel {
+
+  static async updateUserEmailVerified(userId: number, emailVerified: boolean) {
+    try {
+      const result = await executeQueryAsync(userQueries.UPDATE_EMAIL_VERIFIED, [emailVerified, userId]);
+      return result;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
   static async addUser(user: User) {
     try {
       const result = await executeQueryAsync(userQueries.ADD_NEW_USER, [

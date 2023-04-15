@@ -8,4 +8,3 @@ export const userLogin = (userInfo: UserModel) => {
 export const userSignOut = () => {
     return {type: "SIGN_OUT"}
 }
-

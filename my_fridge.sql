@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2023 at 02:37 PM
+-- Generation Time: Apr 13, 2023 at 09:43 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -44,7 +44,7 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`item_id`, `category_name`, `item_name`, `quantity`, `expiration_date`, `qr_image`, `user_id`) VALUES
-(3, 'Meat', 'test', 1, '2023-03-15', 'test.png', 7);
+(3, 'Meat', 'testasdasd', 1213, '2023-03-27', 'test.png', 7);
 
 -- --------------------------------------------------------
 
@@ -80,16 +80,17 @@ CREATE TABLE `user` (
   `first_name` varchar(20) NOT NULL,
   `last_name` varchar(20) NOT NULL,
   `phone_number` int(15) NOT NULL,
-  `is_admin` tinyint(1) NOT NULL
+  `is_admin` tinyint(1) NOT NULL,
+  `email_verified` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`email`, `password`, `user_id`, `first_name`, `last_name`, `phone_number`, `is_admin`) VALUES
-('yomashlom6@gmail.com', '$2a$10$0zt198Zt9yo34UlS8yg1weErVkhj8U3C3uBhhkEky4WinpiiHKgoC', 6, 'yotam', 'amshalom', 503070151, 1),
-('moshikosarig1@gmail.com', '$2a$10$0GDa4peNBa0LmLhjwbMOa.wSaImrid66xCHdiQ6Zx11vYcpApGriW', 7, 'moshiko', 'sarig', 503069494, 1);
+INSERT INTO `user` (`email`, `password`, `user_id`, `first_name`, `last_name`, `phone_number`, `is_admin`, `email_verified`) VALUES
+('yomashlom6@gmail.com', '$2a$10$0zt198Zt9yo34UlS8yg1weErVkhj8U3C3uBhhkEky4WinpiiHKgoC', 6, 'yotam', 'amshalom', 503070151, 1, 1),
+('moshikosarig1@gmail.com', '$2a$10$0GDa4peNBa0LmLhjwbMOa.wSaImrid66xCHdiQ6Zx11vYcpApGriW', 7, 'moshiko', 'sarig', 503069494, 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -126,7 +127,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `item_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `item_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `item_category`
@@ -138,7 +139,7 @@ ALTER TABLE `item_category`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- Constraints for dumped tables

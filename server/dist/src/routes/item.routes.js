@@ -7,6 +7,9 @@ const express_1 = __importDefault(require("express"));
 const item_controller_1 = __importDefault(require("../controllers/item.controller"));
 const router = express_1.default.Router();
 // TODO: Add middleware to the routes
+router.get("/items", item_controller_1.default.getItems);
+router.get("/items/get/item/by/item/id/:id", item_controller_1.default.getItemById);
+router.get("/items/get/the/latest/item", item_controller_1.default.getLatestItem);
 router.get("/items/:id", item_controller_1.default.getItemsByUserId);
 router.post("/items/add/new/item", item_controller_1.default.addItem);
 router.put("/items/edit/item", item_controller_1.default.editItem);

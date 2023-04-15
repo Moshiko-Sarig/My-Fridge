@@ -1,22 +1,19 @@
 import { useCookie } from '../../../hooks/useCookie';
-import { useState } from 'react'
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { userLogin, userSignOut } from '../../Redux/Actions';
-import jwt_decode from 'jwt-decode';
-import axios from 'axios';
-import UserModel from '../../../Models/UserModel';
-import api_endpoints from '../../../Utils/api.endpoints';
-import './Login.css'
+import { toast, Toaster } from 'react-hot-toast';
+import { logUserIn } from '../../../Services/authService';
+import './Login.css';
+
 
 
 const Login = () => {
-
     const dispatch = useDispatch();
-    const [authToken, setAuthToken,] = useCookie('authToken');
+    const [authToken, setAuthToken] = useCookie('authToken');
     const [formData, setFormData] = useState({
-        email: "",
-        password: ""
+        email: '',
+        password: '',
     });
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,44 +24,50 @@ const Login = () => {
         });
     };
 
-
-    async function logUserIn() {
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        const response = await axios.post(api_endpoints.LOGIN, formData);
-        const token = response.data.token;
-        setAuthToken(token, 30);
-        const decodedUserData = jwt_decode(token) as UserModel; 
-        dispatch(userLogin(decodedUserData));
-
-        setTimeout(() => {
-            dispatch(userSignOut());
-        }, 30 * 60 * 1000);
-
+        try {
+            const { token, first_name, last_name } = await logUserIn(formData.email, formData.password, setAuthToken, dispatch);
+            toast.success(`Welcome back, ${first_name} ${last_name}!`);
+        } catch (error) {
+            toast.error("An error occurred. Please check your email and password.");
+        }
     }
-
+    
     return (
         <div className='Login'>
-            <form onSubmit={logUserIn}>
+            <Toaster position='top-center' reverseOrder={true} />
+            <form onSubmit={handleSubmit}>
                 <div>
-                    <input type="email" name="email" value={formData.email} onChange={handleInputChange}
-                        placeholder="E-mail" />
+                    <input
+                        type='email'
+                        name='email'
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder='E-mail'
+                    />
                 </div>
                 <div>
-                    <input type="text" name="password" value={formData.password} onChange={handleInputChange}
-                        placeholder="Password" />
+                    <input
+                        type='text'
+                        name='password'
+                        value={formData.password}
+                        onChange={handleInputChange}
+                        placeholder='Password'
+                    />
                 </div>
                 <div>
-                    <input type="submit" value="Log in" />
+                    <input type='submit' value='Log in' />
                 </div>
                 <div>
-                    <span>Dont have an account yet ?</span> &nbsp;
-                    <NavLink to="/create-account"><u className='semiLink'>Create an account</u></NavLink>
-
+                    <span>Don't have an account yet?</span> &nbsp;
+                    <NavLink to='/create-account'>
+                        <u className='semiLink'>Create an account</u>
+                    </NavLink>
                 </div>
             </form>
         </div>
-    )
-}
-
+    );
+};
 
 export default Login;

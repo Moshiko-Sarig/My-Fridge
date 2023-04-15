@@ -1,18 +1,8 @@
-import { useDispatch } from 'react-redux';
-import UserModel from '../../../Models/UserModel';
 import './LandingPage.css'
 
 
 
-export interface ReduxState {
-    logged: { isLogged: boolean, userInfo: UserModel },
-
-}
-
 export default function LandingPage(): JSX.Element {
-
-    const dispatch = useDispatch();
-
 
 
     return (
