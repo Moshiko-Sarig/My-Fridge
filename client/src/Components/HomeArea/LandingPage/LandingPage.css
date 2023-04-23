@@ -1,0 +1,15 @@
+.LandingPage {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    color: #3e363f;
+}
+
+
+.LandingPage > aside {
+    grid-column: span 1;
+}
+
+.LandingPage > main {
+    grid-column: span 5;
+    text-align: left;
+}

@@ -1,0 +1,32 @@
+td > button {
+    outline: none;
+    border: none;
+    background: transparent;
+}
+
+
+table {
+    width: 100%;
+}
+
+th,
+td {
+    font-weight: unset;
+    padding-right: 10px;
+}
+
+.exp1 {
+    padding: 15px;
+}
+
+.tableHeader {
+    background-color: slateblue;
+}
+
+.tableData {
+    background-color: rosybrown;
+}
+
+.td1:hover, .td2:hover, .td3:hover, .td4:hover, .td5:hover, .td6:hover, .td7:hover {
+    background-color: palevioletred;
+}
