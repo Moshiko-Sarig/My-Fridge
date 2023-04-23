@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 function useInput(initialValue: string, validator: (value: string) => boolean) {
+    
     const [value, setValue] = useState(initialValue);
     const [isValid, setIsValid] = useState(false);
 

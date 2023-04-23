@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2023 at 02:37 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.0.25
+-- Generation Time: Apr 23, 2023 at 11:32 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -44,7 +44,24 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`item_id`, `category_name`, `item_name`, `quantity`, `expiration_date`, `qr_image`, `user_id`) VALUES
-(3, 'Meat', 'test', 1, '2023-03-15', 'test.png', 7);
+(3, 'Meat', 'testasdasd', 1213, '2023-03-27', 'test.png', 7),
+(9, 'Sweets', 'Gummies', 609, '2032-05-23', 'http://localhost:4000/api/v1/items/get/item/by/item/id/4', 6),
+(10, 'Dairy', 'Milk', 11, '2023-05-27', 'http://localhost:4000/api/v1/items/get/item/by/item/id/10', 6),
+(11, 'Dairy', 'Milk', 11, '2023-05-27', 'http://localhost:4000/api/v1/items/get/item/by/item/id/11', 6),
+(12, 'Dairy', 'Milk', 11, '2023-05-27', 'http://localhost:4000/api/v1/items/get/item/by/item/id/12', 6),
+(13, 'Dairy', 'Milk', 11, '2023-05-27', 'http://localhost:4000/api/v1/items/get/item/by/item/id/13', 6),
+(14, 'Dairy', 'Milk', 11, '2023-05-27', 'http://localhost:4000/api/v1/items/get/item/by/item/id/14', 6),
+(15, 'Dairy', 'Milk', 11, '2023-05-27', 'http://localhost:4000/api/v1/items/get/item/by/item/id/15', 6),
+(16, 'Dairy', 'Milk', 11, '2023-05-27', 'http://localhost:4000/api/v1/items/get/item/by/item/id/16', 6),
+(17, 'Dairy', 'Milk', 11, '2023-05-27', 'http://localhost:4000/api/v1/items/get/item/by/item/id/17', 6),
+(18, 'Canned goods', 'Olives', 15, '2050-04-23', 'http://localhost:4000/api/v1/items/get/item/by/item/id/18', 6),
+(19, 'Canned goods', 'Olives', 15, '2050-04-23', 'http://localhost:4000/api/v1/items/get/item/by/item/id/19', 6),
+(20, 'Canned goods', 'Olives', 15, '2050-04-23', 'http://localhost:4000/api/v1/items/get/item/by/item/id/20', 6),
+(21, 'Canned goods', 'Olives', 15, '2050-04-23', 'http://localhost:4000/api/v1/items/get/item/by/item/id/21', 6),
+(22, 'Canned goods', 'Olives', 15, '2050-04-23', 'http://localhost:4000/api/v1/items/get/item/by/item/id/22', 6),
+(23, 'Meat', 'Chicken wings', 40, '2023-04-29', 'http://localhost:4000/api/v1/items/get/item/by/item/id/23', 6),
+(24, 'Meat', 'Chicken wings', 40, '2023-04-29', 'http://localhost:4000/api/v1/items/get/item/by/item/id/24', 6),
+(25, 'Meat', 'Chicken wings', 40, '2023-04-29', 'http://localhost:4000/api/v1/items/get/item/by/item/id/25', 6);
 
 -- --------------------------------------------------------
 
@@ -80,16 +97,17 @@ CREATE TABLE `user` (
   `first_name` varchar(20) NOT NULL,
   `last_name` varchar(20) NOT NULL,
   `phone_number` int(15) NOT NULL,
-  `is_admin` tinyint(1) NOT NULL
+  `is_admin` tinyint(1) NOT NULL,
+  `email_verified` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`email`, `password`, `user_id`, `first_name`, `last_name`, `phone_number`, `is_admin`) VALUES
-('yomashlom6@gmail.com', '$2a$10$0zt198Zt9yo34UlS8yg1weErVkhj8U3C3uBhhkEky4WinpiiHKgoC', 6, 'yotam', 'amshalom', 503070151, 1),
-('moshikosarig1@gmail.com', '$2a$10$0GDa4peNBa0LmLhjwbMOa.wSaImrid66xCHdiQ6Zx11vYcpApGriW', 7, 'moshiko', 'sarig', 503069494, 1);
+INSERT INTO `user` (`email`, `password`, `user_id`, `first_name`, `last_name`, `phone_number`, `is_admin`, `email_verified`) VALUES
+('yomashlom6@gmail.com', '$2a$10$0zt198Zt9yo34UlS8yg1weErVkhj8U3C3uBhhkEky4WinpiiHKgoC', 6, 'yotam', 'amshalom', 503070151, 1, 1),
+('moshikosarig1@gmail.com', '$2a$10$0GDa4peNBa0LmLhjwbMOa.wSaImrid66xCHdiQ6Zx11vYcpApGriW', 7, 'moshiko', 'sarig', 503069494, 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -126,7 +144,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `item_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `item_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `item_category`
@@ -138,7 +156,7 @@ ALTER TABLE `item_category`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- Constraints for dumped tables

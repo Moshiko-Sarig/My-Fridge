@@ -3,7 +3,8 @@ import mysql, { Pool, MysqlError, FieldInfo } from "mysql";
 const pool: Pool = mysql.createPool({
   host: "localhost",
   user: "root",
-  database: "my_fridge"
+  database: "my_fridge",
+  connectTimeout: 90000,
 });
 
 console.log("Connected to database");

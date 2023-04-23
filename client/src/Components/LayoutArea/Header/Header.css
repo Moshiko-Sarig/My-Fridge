@@ -1,6 +1,5 @@
 .Header {
     text-align: center;
-    background-color: tomato;
     height: 100%;
     display: grid;
     grid-template-rows: 60% 40%;
@@ -12,16 +11,12 @@
 }
 
 .menuToggle {
-    grid-column: span 1;
+    grid-column: span 12;
 }
-
-.userSearch {
-    grid-column: span 2;
-}
-
-.menuOptions {
-    grid-column: span 9;
-    text-align: left;
-}
-
-
+.title {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    padding: 10px;
+    text-align: center;
+    color: #333;
+  }

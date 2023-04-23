@@ -8,7 +8,8 @@ const mysql_1 = __importDefault(require("mysql"));
 const pool = mysql_1.default.createPool({
     host: "localhost",
     user: "root",
-    database: "my_fridge"
+    database: "my_fridge",
+    connectTimeout: 90000,
 });
 console.log("Connected to database");
 async function executeQueryAsync(sqlCmd, values = []) {

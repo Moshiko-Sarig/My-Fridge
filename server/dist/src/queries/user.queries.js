@@ -10,5 +10,7 @@ const userQueries = {
     `,
     CHECK_IF_EMAIL_EXIST: `SELECT * FROM \`user\` WHERE email = ?`,
     LOGIN: `SELECT * from user where email = ?`,
+    UPDATE_EMAIL_VERIFIED: 'UPDATE `user` SET email_verified = ? WHERE user_id = ?',
+    UPDATE_USER_PASSWORD: 'UPDATE `user` SET password = ? WHERE user_id = ?',
 };
 exports.default = userQueries;

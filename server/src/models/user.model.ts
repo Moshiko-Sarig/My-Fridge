@@ -17,6 +17,17 @@ interface Credentials {
 }
 
 class UserModel {
+
+  static async updateUserEmailVerified(userId: number, emailVerified: boolean) {
+    try {
+      const result = await executeQueryAsync(userQueries.UPDATE_EMAIL_VERIFIED, [emailVerified, userId]);
+      return result;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
   static async addUser(user: User) {
     try {
       const result = await executeQueryAsync(userQueries.ADD_NEW_USER, [
@@ -55,6 +66,16 @@ class UserModel {
       return user[0];
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  static async updateUserPassword(user_id: number, newPassword: string) {
+    try {
+      const result = await executeQueryAsync(userQueries.UPDATE_USER_PASSWORD, [newPassword, user_id]);
+      return result;
+    } catch (error) {
+      console.error(error);
+      throw error;
     }
   }
 }
