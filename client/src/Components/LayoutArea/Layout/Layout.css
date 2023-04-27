@@ -1,0 +1,24 @@
+.Layout {
+	height:100%;
+    text-align: center;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 20% 80%;
+    grid-template-columns: repeat(6, 1fr) ;
+}
+
+
+.Layout > header, .Layout > main {
+    grid-column: span 6;
+}
+
+.Layout > header {
+    margin-top: 0;
+    position: sticky;
+    top: 0;
+    /* background-color: gray; */
+}
+.Layout > main {
+    padding-top: 40px;
+    /* background-color: yellow; */
+}

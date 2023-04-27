@@ -1,0 +1,1 @@
+export enum CookieEnum { My_Fridge_Cookie = "my fridge cookie " }  

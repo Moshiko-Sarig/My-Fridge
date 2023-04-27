@@ -1,0 +1,85 @@
+.itemGrid {
+    height: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+}
+
+
+.itemGrid>.spacer {
+    grid-column: span 1;
+}
+
+.itemGrid>.pageContent {
+    grid-column: span 8;
+}
+
+td>button {
+    outline: none;
+    border: none;
+    background: transparent;
+}
+
+button :hover {
+    cursor: pointer;
+}
+
+
+table {
+    text-align: center;
+    width: 100%;
+}
+
+.exp1 {
+    padding: 15px;
+}
+
+.tableHeader {
+    background-color: slateblue;
+}
+
+.tableData {
+    background-color: rosybrown;
+}
+
+.td1:hover, .td2:hover, .td3:hover, .td4:hover, .td5:hover, .td6:hover {
+    background-color: palevioletred;
+}
+
+.modal-popup {
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    color: black;
+    background-color: #fefefe;
+    border: 2px solid gray;
+    border-radius: 5px;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 240px;
+    height: 350px;
+}
+
+.close {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-right: 33%;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
